@@ -1,0 +1,6 @@
+{
+  "rewrites": [
+    { "source": "/sitemap.xml", "destination": "https://YOUR-BACKEND.onrender.com/sitemap.xml" },
+    { "source": "/(.*)", "destination": "/index.html" }
+  ]
+}
