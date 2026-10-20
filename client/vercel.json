@@ -1,6 +1,6 @@
 {
   "rewrites": [
-    { "source": "/sitemap.xml", "destination": "https://YOUR-BACKEND.onrender.com/sitemap.xml" },
+    { "source": "/sitemap.xml", "destination": " https://shopease-api-w4f9.onrender.com" },
     { "source": "/(.*)", "destination": "/index.html" }
   ]
 }
