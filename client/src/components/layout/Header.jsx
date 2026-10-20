@@ -5,7 +5,7 @@ import { Heart, ShoppingCart, User, LogOut, Package, ShoppingBag } from "lucide-
 import { useAuth } from "../../context/AuthContext";
 import { useCart } from "../../context/CartContext";
 import { useWishlist } from "../../context/WishlistContext";
-import { STORE_NAME } from "../../config";
+import useStoreInfo from "../../hooks/useStoreInfo";
 import SearchBar from "./SearchBar";
 import CategoryMenu from "./CategoryMenu";
 import MiniCart from "./MiniCart";
@@ -23,6 +23,7 @@ function CountBadge({ count }) {
 const iconClass = "relative rounded-full p-2 text-muted transition hover:bg-surface hover:text-primary";
 
 export default function Header() {
+  const store = useStoreInfo();
   const { user, logout } = useAuth();
   const { itemCount, setMiniCartOpen } = useCart();
   const { count: wishlistCount } = useWishlist();
@@ -41,7 +42,7 @@ export default function Header() {
       <div className="relative mx-auto flex max-w-7xl flex-wrap items-center gap-3 px-4 py-3">
         <Link to="/" className="flex items-center gap-2 text-xl font-bold text-primary">
           <ShoppingBag size={26} />
-          {STORE_NAME}
+         {store.name}
         </Link>
 
         <CategoryMenu />

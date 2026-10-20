@@ -3,10 +3,12 @@ import { Mail, Phone, MapPin } from "lucide-react";
 import toast from "react-hot-toast";
 import api, { getErrorMessage } from "../api/axios";
 import AuthInput from "../components/auth/AuthInput";
+import useStoreInfo from "../hooks/useStoreInfo";
 import { useAuth } from "../context/AuthContext";
 
 export default function ContactUs() {
   const { user } = useAuth();
+    const store = useStoreInfo();
   const [form, setForm] = useState({ name: user?.name || "", email: user?.email || "", subject: "", message: "" });
   const [submitting, setSubmitting] = useState(false);
 
@@ -63,21 +65,21 @@ export default function ContactUs() {
             <Mail size={18} className="mt-0.5 text-primary" />
             <div>
               <p className="text-sm font-medium text-ink">Email</p>
-              <p className="text-sm text-muted">support@shopease.com</p>
+              <p className="text-sm text-muted">{store.email || "Not provided yet"}</p>
             </div>
           </div>
           <div className="flex items-start gap-3 rounded-xl bg-surface p-4">
             <Phone size={18} className="mt-0.5 text-primary" />
             <div>
               <p className="text-sm font-medium text-ink">Phone</p>
-              <p className="text-sm text-muted">+92 300 1234567</p>
+              <p className="text-sm text-muted">{store.phone || "Not provided yet"}</p>
             </div>
           </div>
           <div className="flex items-start gap-3 rounded-xl bg-surface p-4">
             <MapPin size={18} className="mt-0.5 text-primary" />
             <div>
               <p className="text-sm font-medium text-ink">Address</p>
-              <p className="text-sm text-muted">Gujrat, Punjab, Pakistan</p>
+              <p className="text-sm text-muted">{store.address || "Not provided yet"}</p>
             </div>
           </div>
         </div>

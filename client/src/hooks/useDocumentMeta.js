@@ -1,7 +1,6 @@
 import { useEffect } from "react";
-import { STORE_NAME } from "../config";
+import useStoreInfo from "./useStoreInfo";
 
-const DEFAULT_TITLE = `${STORE_NAME} - Online Store`;
 const DEFAULT_DESCRIPTION = "Shop quality products with fast delivery, easy returns and secure payment.";
 
 const setMetaTag = (attr, key, content) => {
@@ -16,10 +15,10 @@ const setMetaTag = (attr, key, content) => {
 
 const removeMetaTag = (attr, key) => document.head.querySelector(`meta[${attr}="${key}"]`)?.remove();
 
-const restoreDefaults = () => {
-  document.title = DEFAULT_TITLE;
+const restoreDefaults = (defaultTitle) => {
+  document.title = defaultTitle;
   setMetaTag("name", "description", DEFAULT_DESCRIPTION);
-  setMetaTag("property", "og:title", DEFAULT_TITLE);
+  setMetaTag("property", "og:title", defaultTitle);
   setMetaTag("property", "og:description", DEFAULT_DESCRIPTION);
   setMetaTag("property", "og:type", "website");
   removeMetaTag("property", "og:image");
@@ -30,10 +29,13 @@ const restoreDefaults = () => {
 // Page ka title, description, share-preview ki tasveer aur "search engine se chhupao" set karta hai.
 // Page chhodte hi purane default wapas aa jate hain.
 export default function useDocumentMeta({ title, description, image, type = "website", noindex = false, disabled = false } = {}) {
+  const { name: storeName } = useStoreInfo();
+
   useEffect(() => {
     if (disabled) return undefined;
 
-    const fullTitle = title ? `${title} | ${STORE_NAME}` : DEFAULT_TITLE;
+    const defaultTitle = `${storeName} - Online Store`;
+    const fullTitle = title ? `${title} | ${storeName}` : defaultTitle;
     const desc = String(description || DEFAULT_DESCRIPTION).replace(/\s+/g, " ").trim().slice(0, 160);
 
     document.title = fullTitle;
@@ -49,6 +51,6 @@ export default function useDocumentMeta({ title, description, image, type = "web
     if (noindex) setMetaTag("name", "robots", "noindex, nofollow");
     else removeMetaTag("name", "robots");
 
-    return restoreDefaults;
-  }, [title, description, image, type, noindex, disabled]);
+    return () => restoreDefaults(defaultTitle);
+  }, [title, description, image, type, noindex, disabled, storeName]);
 }

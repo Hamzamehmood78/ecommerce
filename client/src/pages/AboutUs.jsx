@@ -1,5 +1,5 @@
 import { ShieldCheck, Truck, HeartHandshake, Sparkles } from "lucide-react";
-import { STORE_NAME } from "../config";
+import useStoreInfo from "../hooks/useStoreInfo";
 
 const values = [
   { icon: Sparkles, title: "Quality First", text: "Every product is checked for quality before it reaches you." },
@@ -9,11 +9,12 @@ const values = [
 ];
 
 export default function AboutUs() {
+  const store = useStoreInfo();
   return (
     <div className="mx-auto max-w-4xl px-4 py-14">
       <h1 className="text-3xl font-bold text-ink">About {STORE_NAME}</h1>
       <p className="mt-4 max-w-2xl leading-relaxed text-muted">
-        {STORE_NAME} started with a simple idea: shopping online should be easy, honest, and enjoyable.
+        {store.name} started with a simple idea: shopping online should be easy, honest, and enjoyable.
         We bring together quality products across fashion, electronics, and home essentials — all in one
         clean, simple store. From browsing to checkout to delivery, we focus on making every step smooth.
       </p>

@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
-import { STORE_NAME } from "../../config";
+import { Mail, Phone, MapPin } from "lucide-react";
+import useStoreInfo from "../../hooks/useStoreInfo";
 
 const columns = [
   {
@@ -15,7 +16,8 @@ const columns = [
       { label: "FAQs", to: "/faqs" },
       { label: "Shipping Policy", to: "/shipping-policy" },
       { label: "Return & Refund Policy", to: "/return-policy" },
-      { label: "Track Order", to: "/track-order" },    ],
+      { label: "Track Order", to: "/track-order" },
+    ],
   },
   {
     title: "Account",
@@ -30,15 +32,39 @@ const columns = [
 const paymentMethods = ["Visa", "Mastercard", "PayPal", "COD"];
 
 export default function Footer() {
+  const store = useStoreInfo();
+
   return (
     <footer className="border-t border-slate-200 bg-surface">
       <div className="mx-auto grid max-w-7xl gap-8 px-4 py-10 sm:grid-cols-2 lg:grid-cols-4">
         <div>
-          <h3 className="text-lg font-bold text-primary">{STORE_NAME}</h3>
+          <h3 className="text-lg font-bold text-primary">{store.name}</h3>
           <p className="mt-3 text-sm leading-relaxed text-muted">
-            Quality products, simple shopping and fast delivery, all in one
-            place.
+            Quality products, simple shopping and fast delivery, all in one place.
           </p>
+
+          {(store.email || store.phone || store.address) && (
+            <ul className="mt-4 space-y-1.5 text-sm text-muted">
+              {store.email && (
+                <li className="flex items-start gap-2">
+                  <Mail size={14} className="mt-0.5 flex-shrink-0 text-primary" />
+                  <span className="break-all">{store.email}</span>
+                </li>
+              )}
+              {store.phone && (
+                <li className="flex items-start gap-2">
+                  <Phone size={14} className="mt-0.5 flex-shrink-0 text-primary" />
+                  <span>{store.phone}</span>
+                </li>
+              )}
+              {store.address && (
+                <li className="flex items-start gap-2">
+                  <MapPin size={14} className="mt-0.5 flex-shrink-0 text-primary" />
+                  <span>{store.address}</span>
+                </li>
+              )}
+            </ul>
+          )}
         </div>
 
         {columns.map((col) => (
@@ -47,10 +73,7 @@ export default function Footer() {
             <ul className="mt-3 space-y-2">
               {col.links.map((link) => (
                 <li key={link.label}>
-                  <Link
-                    to={link.to}
-                    className="text-sm text-muted transition hover:text-primary"
-                  >
+                  <Link to={link.to} className="text-sm text-muted transition hover:text-primary">
                     {link.label}
                   </Link>
                 </li>
@@ -63,7 +86,7 @@ export default function Footer() {
       <div className="border-t border-slate-200">
         <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-3 px-4 py-4 text-sm text-muted sm:flex-row">
           <p>
-            © {new Date().getFullYear()} {STORE_NAME}. All rights reserved.
+            © {new Date().getFullYear()} {store.name}. All rights reserved.
           </p>
           <div className="flex gap-2">
             {paymentMethods.map((method) => (
