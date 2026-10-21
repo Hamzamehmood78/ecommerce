@@ -24,6 +24,9 @@ const siteSettingsSchema = new mongoose.Schema({
     phone: { type: String, default: "" },
     address: { type: String, default: "" },
   },
+  currency: {
+    code: { type: String, default: "PKR" },
+  },
   policies: {
     shipping: { type: String, default: "" },
     returns: { type: String, default: "" },
@@ -56,7 +59,4 @@ const siteSettingsSchema = new mongoose.Schema({
   },
 });
 
-
-module.exports =
-  mongoose.models.SiteSettings ||
-  mongoose.model("SiteSettings", siteSettingsSchema);
+module.exports = mongoose.model("SiteSettings", siteSettingsSchema);
