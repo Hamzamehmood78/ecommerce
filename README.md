@@ -15,8 +15,9 @@ A complete online store with a customer storefront and a role-based admin panel,
 > - The backend is on a free hosting plan and **sleeps when idle**, so the first visit can take up to a minute. A message appears while it wakes up.
 > - The demo admin is a limited staff account: it cannot see payments, store settings or staff management.
 
-![Home page](docs/screenshots/home.png)
-![Admin dashboard](docs/screenshots/admin-dashboard.png)
+![Home page](docs/home.png)
+![Home page](docs/home1.png)
+![Admin dashboard](docs/admin-dashboard.png)
 
 ---
 
