@@ -7,7 +7,7 @@ A complete online store with a customer storefront and a role-based admin panel,
 | | |
 |---|---|
 | **Storefront** | https://ecommerce-eight-delta-90.vercel.app |
-| **Admin panel** | https://ecommerce-eight-delta-90.vercel.app/admin/login — click **"Login as demo admin"** (no password needed) |
+| **Admin panel** | https://ecommerce-eight-delta-90.vercel.app/admin/login — click **"Login as demo admin"** |
 | **Source code** | https://github.com/Hamzamehmood78/ecommerce |
 
 > **Please note**
