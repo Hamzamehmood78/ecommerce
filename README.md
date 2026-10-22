@@ -124,8 +124,8 @@ shopease-mern/
 
 ```bash
 # 1. Get the code
-git clone https://github.com/YOUR-USERNAME/shopease-mern.git
-cd shopease-mern
+git clone https://github.com/Hamzamehmood78/ecommerce
+cd ecommerce
 
 # 2. Backend
 cd server
